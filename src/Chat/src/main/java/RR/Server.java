@@ -29,6 +29,7 @@ public class Server {
 
     public Server() {
         this.authService = new JdbcRunner();
+        LOGGER.info("Запущена БД");
         this.clients = new HashMap<>();
     }
 
@@ -38,11 +39,14 @@ public class Server {
             while (true) {
                 final Socket socket = serverSocket.accept();
                 new ClientHandler(socket, this, threadPool);
+                LOGGER.info("Новый клиент подключился");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            LOGGER.error("Ошибка подключения");
         } finally {
             getAuthService().disconnect();
+            LOGGER.info("Сервер отключен");
         }
     }
 
@@ -53,16 +57,19 @@ public class Server {
     public void subscribe(ClientHandler client) {
         clients.put(client.getNick(), client);
         onLineClients();
+        LOGGER.info("Клиент прошел авторизацию");
     }
 
     public void unsubscribe(ClientHandler client) {
         clients.remove(client.getNick());
         onLineClients();
+        LOGGER.info("Клиент отключился");
     }
 
     public void broadcast(String s) {
         for (ClientHandler client : clients.values()) {
             client.sendMessage(s);
+            LOGGER.info("Отправлено сообщение в общий чат");
         }
     }
 
@@ -70,6 +77,7 @@ public class Server {
         for (ClientHandler client : clients.values()) {
             if (client.getNick().equals(receiver)) {
                 client.sendMessage(message);
+                LOGGER.info("Отправлено приватное сообщение");
             }
 
         }
