@@ -1,0 +1,5 @@
+INFO  2022-03-23 22:16:22 [main] RR.Server (Server.java:32) - Запущена БД
+INFO  2022-03-23 22:16:58 [main] RR.Server (Server.java:42) - Новый клиент подключился
+INFO  2022-03-23 22:17:08 [pool-2-thread-1] RR.Server (Server.java:72) - Отправлено сообщение в общий чат
+INFO  2022-03-23 22:17:08 [pool-2-thread-1] RR.Server (Server.java:60) - Клиент прошел авторизацию
+INFO  2022-03-23 22:18:37 [pool-2-thread-1] RR.Server (Server.java:66) - Клиент отключился

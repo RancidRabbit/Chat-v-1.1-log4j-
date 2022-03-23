@@ -45,8 +45,9 @@ public class Server {
             e.printStackTrace();
             LOGGER.error("Ошибка подключения");
         } finally {
-            getAuthService().disconnect();
             LOGGER.info("Сервер отключен");
+            getAuthService().disconnect();
+
         }
     }
 
